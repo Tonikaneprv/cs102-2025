@@ -1,1 +1,3 @@
-print("hello_world")
+def text():
+    message = "Hello, World!"
+    return message
