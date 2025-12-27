@@ -43,6 +43,28 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     23
     """
 
+    def extended_gcd(a: int, b: int):
+        """Расширенный алгоритм Евклида."""
+        if b == 0:
+            return a, 1, 0
+        else:
+            gcd, x1, y1 = extended_gcd(b, a % b)
+            x = y1
+            y = x1 - (a // b) * y1
+            return gcd, x, y
+
+
+    gcd, x, y = extended_gcd(e, phi)
+
+
+    if gcd != 1:
+        raise ValueError(f"Обратного элемента не существует, НОД({e}, {phi}) = {gcd}")
+
+
+    inverse = x % phi
+
+    return inverse
+
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
     if not (is_prime(p) and is_prime(q)):
@@ -50,22 +72,22 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
     elif p == q:
         raise ValueError("p and q cannot be equal")
 
-    # n = pq
+
     n = p * q
 
-    # phi = (p-1)(q-1)
+
     phi = (p - 1) * (q - 1)
 
-    # Choose an integer e such that e and phi(n) are coprime
+
     e = random.randrange(1, phi)
 
-    # Use Euclid's Algorithm to verify that e and phi(n) are coprime
+
     g = gcd(e, phi)
     while g != 1:
         e = random.randrange(1, phi)
         g = gcd(e, phi)
 
-    # Use Extended Euclid's Algorithm to generate the private key
+
     d = multiplicative_inverse(e, phi)
 
     # Return public and private keypair
