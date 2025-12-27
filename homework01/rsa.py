@@ -53,13 +53,10 @@ def multiplicative_inverse(e: int, phi: int) -> int:
             y = x1 - (a // b) * y1
             return gcd, x, y
 
-
     gcd, x, y = extended_gcd(e, phi)
-
 
     if gcd != 1:
         raise ValueError(f"Обратного элемента не существует, НОД({e}, {phi}) = {gcd}")
-
 
     inverse = x % phi
 
@@ -72,21 +69,16 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
     elif p == q:
         raise ValueError("p and q cannot be equal")
 
-
     n = p * q
-
 
     phi = (p - 1) * (q - 1)
 
-
     e = random.randrange(1, phi)
-
 
     g = gcd(e, phi)
     while g != 1:
         e = random.randrange(1, phi)
         g = gcd(e, phi)
-
 
     d = multiplicative_inverse(e, phi)
 
