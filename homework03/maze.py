@@ -81,7 +81,9 @@ def make_step(labyrinth: List[List[Union[str, int]]], step_num: int) -> List[Lis
     return labyrinth
 
 
-def shortest_path(labyrinth: List[List[Union[str, int]]], finish: Tuple[int, int]) -> Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]:
+def shortest_path(
+    labyrinth: List[List[Union[str, int]]], finish: Tuple[int, int]
+) -> Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]:
     rows_cnt = len(labyrinth)
     cols_cnt = len(labyrinth[0])
     fx, fy = finish
@@ -122,7 +124,9 @@ def encircled_exit(labyrinth: List[List[Union[str, int]]], point: Tuple[int, int
     return False
 
 
-def solve_maze(field: List[List[Union[str, int]]]) -> Tuple[List[List[Union[str, int]]], Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]]:
+def solve_maze(
+    field: List[List[Union[str, int]]],
+) -> Tuple[List[List[Union[str, int]]], Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]]:
     field = deepcopy(field)
     exit_points = get_exits(field)
     if len(exit_points) == 1:
@@ -148,7 +152,9 @@ def solve_maze(field: List[List[Union[str, int]]]) -> Tuple[List[List[Union[str,
     return field, route
 
 
-def add_path_to_grid(field: List[List[Union[str, int]]], route: Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]) -> List[List[Union[str, int]]]:
+def add_path_to_grid(
+    field: List[List[Union[str, int]]], route: Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]
+) -> List[List[Union[str, int]]]:
     if route:
         for i, line in enumerate(field):
             for j, _ in enumerate(line):
