@@ -21,7 +21,7 @@ class GUI(UI):
     def draw_grid(self) -> None:
         for i in range(self.life.rows):
             for j in range(self.life.cols):
-                color = (pygame.Color("green") if self.life.curr_generation[i][j] == 1 else pygame.Color("white"))
+                color = pygame.Color("green") if self.life.curr_generation[i][j] == 1 else pygame.Color("white")
                 pygame.draw.rect(
                     self.screen,
                     color,
