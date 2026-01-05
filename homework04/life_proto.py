@@ -107,7 +107,16 @@ class GameOfLife:
         out : Cells
             Список соседних клеток, в котором каждая позиция – 0 или 1.
         """
-        pass
+        row, col = cell
+        neighbours = []
+        for dr in (-1, 0, 1):
+            for dc in (-1, 0, 1):
+                if dr == 0 and dc == 0:
+                    continue
+                r, c = row + dr, col + dc
+                if 0 <= r < self.cell_height and 0 <= c < self.cell_width:
+                    neighbours.append(self.grid[r][c])
+        return neighbours
 
     def get_next_generation(self) -> Grid:
         new_grid = self.create_grid()

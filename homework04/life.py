@@ -39,7 +39,6 @@ class GameOfLife:
                     row.append(0)
             grid.append(row)
         return grid
-        pass
 
     def get_neighbours(self, cell: Cell) -> Cells:
         row, col = cell
