@@ -82,11 +82,7 @@ def make_step(
                     (r_idx - 1, c_idx),
                 ]
                 for nx, ny in adj_cells:
-                    if (
-                        0 <= nx < rows_cnt
-                        and 0 <= ny < cols_cnt
-                        and labyrinth[nx][ny] == 0
-                    ):
+                    if 0 <= nx < rows_cnt and 0 <= ny < cols_cnt and labyrinth[nx][ny] == 0:
                         labyrinth[nx][ny] = next_step
     return labyrinth
 
@@ -121,9 +117,7 @@ def shortest_path(
     return route
 
 
-def encircled_exit(
-    labyrinth: List[List[Union[str, int]]], point: Tuple[int, int]
-) -> bool:
+def encircled_exit(labyrinth: List[List[Union[str, int]]], point: Tuple[int, int]) -> bool:
     rows_cnt = len(labyrinth)
     cols_cnt = len(labyrinth[0])
     px, py = point
@@ -142,9 +136,8 @@ def encircled_exit(
 
 def solve_maze(
     field: List[List[Union[str, int]]],
-) -> Tuple[
-    List[List[Union[str, int]]], Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]
-]:
+    ) -> Tuple[List[List[Union[str, int]]], Optional[Union[Tuple[int, int],
+List[Tuple[int, int]]]]]:
     field = deepcopy(field)
     exit_points = get_exits(field)
     if len(exit_points) == 1:
