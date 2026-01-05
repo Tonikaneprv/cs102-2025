@@ -9,9 +9,7 @@ class GUI(UI):
         super().__init__(life)
         self.cell_size = cell_size
         self.speed = speed
-        self.screen = pygame.display.set_mode(
-            (life.cols * cell_size, life.rows * cell_size)
-        )
+        self.screen = pygame.display.set_mode((life.cols * cell_size, life.rows * cell_size))
 
     def draw_lines(self) -> None:
         width, height = self.screen.get_size()
@@ -23,11 +21,7 @@ class GUI(UI):
     def draw_grid(self) -> None:
         for i in range(self.life.rows):
             for j in range(self.life.cols):
-                color = (
-                    pygame.Color("green")
-                    if self.life.curr_generation[i][j] == 1
-                    else pygame.Color("white")
-                )
+                color = (pygame.Color("green") if self.life.curr_generation[i][j] == 1 else pygame.Color("white"))
                 pygame.draw.rect(
                     self.screen,
                     color,
